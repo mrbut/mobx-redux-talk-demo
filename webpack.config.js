@@ -2,9 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './client/redux/index.js',
+  entry: './redux/client/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'redux/dist'),
     filename: 'redux.bundle.js'
   },
   mode: 'development',
@@ -34,7 +34,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './client/index.html',
+      template: './redux/client/index.html',
       meta: {
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
       }

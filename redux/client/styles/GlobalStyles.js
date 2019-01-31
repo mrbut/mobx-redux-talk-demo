@@ -1,11 +1,11 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
-import HKGroteskLightEOT from './../fonts/HKGrotesk-Light.eot';
-import HKGroteskLightWoff from './../fonts/HKGrotesk-Light.woff';
-import HKGroteskLightWoffII from './../fonts/HKGrotesk-Light.woff2';
-import HKGroteskMediumEOT from './../fonts/HKGrotesk-Medium.eot';
-import HKGroteskMediumWoff from './../fonts/HKGrotesk-Medium.woff';
-import HKGroteskMediumWoffII from './../fonts/HKGrotesk-Medium.woff2';
+import HKGroteskLightEOT from '../fonts/HKGrotesk-Light.eot';
+import HKGroteskLightWoff from '../fonts/HKGrotesk-Light.woff';
+import HKGroteskLightWoffII from '../fonts/HKGrotesk-Light.woff2';
+import HKGroteskMediumEOT from '../fonts/HKGrotesk-Medium.eot';
+import HKGroteskMediumWoff from '../fonts/HKGrotesk-Medium.woff';
+import HKGroteskMediumWoffII from '../fonts/HKGrotesk-Medium.woff2';
 
 const theme = {
   light: '#ffffff',
