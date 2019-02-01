@@ -18,10 +18,6 @@ const CircularButtonStyled = styled.button`
   padding: 20px;
   background-color: ${props => theme[props.theme].bg};
   color: ${props => theme[props.theme].fg};
-
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const CircularButton = props => {

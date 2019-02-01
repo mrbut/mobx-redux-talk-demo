@@ -1,11 +1,22 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import CalculatorOutput from './CalculatorOutput';
+import CalculatorInput from './CalculatorInput';
+import { ThemeContext } from '../context/ThemeContext';
+
+const theme = {
+  light: {
+    bg: '#f8f8f8'
+  },
+  dark: {
+    bg: '#0B0B0B'
+  }
+};
 
 const CalculatorStyle = styled.section`
-  background-color: #f8f8f8;
-  height: 80vh;
-  min-height: 756px;
+  background-color: ${props => theme[props.theme].bg};
+  height: 733px;
 
   h2 {
     position: absolute;
@@ -16,13 +27,20 @@ const CalculatorStyle = styled.section`
   }
 `;
 
-const Calculator = props => {
+const Calculator = ({ calculatorOutput, calculatorHistory }) => {
+  const { theme } = useContext(ThemeContext);
   return (
-    <CalculatorStyle>
+    <CalculatorStyle theme={theme}>
       <h2>Calculator</h2>
-      <CalculatorOutput output={1000} history={[200, '+']} />
+      <CalculatorOutput output={calculatorOutput} history={calculatorHistory} />
+      <CalculatorInput />
     </CalculatorStyle>
   );
+};
+
+Calculator.propTypes = {
+  calculatorOutput: PropTypes.number.isRequired,
+  calculatorHistory: PropTypes.array.isRequired
 };
 
 export default Calculator;

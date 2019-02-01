@@ -5,29 +5,42 @@ import { ThemeContext } from '../context/ThemeContext';
 const theme = {
   light: {
     bg: 'white',
-    fg: 'black'
+    color: '#535353'
   },
   dark: {
     bg: 'black',
-    fg: 'white'
+    color: '#FFFFFF'
   }
 };
 
-const SwitchToggleStyled = styled.button`
-  appearance: none;
-  padding: 20px;
-  background-color: ${props => theme[props.theme].bg};
-  color: ${props => theme[props.theme].fg};
+const SwitchToggleStyled = styled.div`
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
 
-  &:hover {
-    cursor: pointer;
+  label {
+    color: ${props => theme[props.theme].color};
+    outline: none;
+  }
+
+  input[type='checkbox'] {
+    pointer-events: none;
+    outline: none;
   }
 `;
 
-const SwitchToggle = props => {
+const SwitchToggle = ({ onChange }) => {
   const { theme } = useContext(ThemeContext);
 
-  return <SwitchToggleStyled theme={theme}>{props.children}</SwitchToggleStyled>;
+  return (
+    <SwitchToggleStyled theme={theme}>
+      <label htmlFor="toggle">
+        <input onChange={onChange} type="checkbox" name="toggle" id="toggle" />
+        {`${theme[0].toUpperCase()}${theme.slice(1, theme.length)} mode`}
+      </label>
+    </SwitchToggleStyled>
+  );
 };
 
 export default SwitchToggle;

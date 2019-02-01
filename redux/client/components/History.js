@@ -1,4 +1,5 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 import HistoryItem from './HistoryItem';
 
 const History = ({ calculations, handleDeleteHistory }) => (
@@ -13,5 +14,10 @@ const History = ({ calculations, handleDeleteHistory }) => (
     ))}
   </ul>
 );
+
+History.propTypes = {
+  calculations: Proptypes.array.isRequired,
+  handleDeleteHistory: Proptypes.func.isRequired
+};
 
 export default History;

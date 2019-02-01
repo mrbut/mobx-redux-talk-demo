@@ -25,10 +25,7 @@ const HeaderStyled = styled.header`
   padding: 20px;
   font-size: 20px;
   text-transform: uppercase;
-
-  &:hover {
-    cursor: pointer;
-  }
+  margin-bottom: 42px;
 
   h1 {
     font-family: 'Hk Grotesk', sans-serif;

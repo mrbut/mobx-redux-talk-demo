@@ -93,6 +93,10 @@ const GlobalStyles = createGlobalStyle`
     font-size: 16px;
     font-weight: 300;
   }
+  
+  button:hover {
+    cursor: pointer;
+  }
 
 `;
 

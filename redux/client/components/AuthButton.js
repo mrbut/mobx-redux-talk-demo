@@ -32,10 +32,6 @@ const AuthButtonStyle = styled.button`
   text-transform: uppercase;
   letter-spacingew: ${rem(1.2)};
   font-size: 12px;
-
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const AuthenticatedButtonStyle = styled(AuthButtonStyle)`
