@@ -25,7 +25,7 @@ const CalculationsStyled = styled.main`
 
 const Calculations = ({ calculations, handleDeleteHistory }) => (
   <CalculationsStyled>
-    <Calculator calculatorOutput={1000} calculatorHistory={[200, '+']} />
+    <Calculator calculatorOutput={0} calculatorHistory={[]} />
     <History calculations={calculations} handleDeleteHistory={handleDeleteHistory} />
   </CalculationsStyled>
 );

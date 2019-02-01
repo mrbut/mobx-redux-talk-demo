@@ -93,9 +93,9 @@ const UnAuthenticatedButtonStyle = styled(AuthButtonStyle)`
   }
 `;
 
-const AuthenticatedButton = ({ children, theme }) => {
+const AuthenticatedButton = ({ children, onClick, theme }) => {
   return (
-    <AuthenticatedButtonStyle theme={theme}>
+    <AuthenticatedButtonStyle onClick={onClick} theme={theme}>
       <span>Log out</span>
       <VerticalBar />
       <Avatar>{children}</Avatar>
@@ -103,17 +103,21 @@ const AuthenticatedButton = ({ children, theme }) => {
   );
 };
 
-const UnAuthenticatedButton = ({ theme }) => (
-  <UnAuthenticatedButtonStyle theme={theme}>Save Calculation</UnAuthenticatedButtonStyle>
+const UnAuthenticatedButton = ({ onClick, theme }) => (
+  <UnAuthenticatedButtonStyle onClick={onClick} theme={theme}>
+    Save Calculation
+  </UnAuthenticatedButtonStyle>
 );
 
-const AuthButton = ({ authenticated, children }) => {
+const AuthButton = ({ authenticated, children, onClick }) => {
   const { theme } = useContext(ThemeContext);
 
   return authenticated ? (
-    <AuthenticatedButton theme={theme}>{children}</AuthenticatedButton>
+    <AuthenticatedButton onClick={onClick} theme={theme}>
+      {children}
+    </AuthenticatedButton>
   ) : (
-    <UnAuthenticatedButton theme={theme} />
+    <UnAuthenticatedButton onClick={onClick} theme={theme} />
   );
 };
 

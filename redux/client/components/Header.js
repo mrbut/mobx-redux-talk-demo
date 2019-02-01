@@ -44,7 +44,7 @@ const HeaderStyled = styled.header`
   }
 `;
 
-const Header = () => {
+const Header = ({ authenticated, handleShowModal }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -53,7 +53,9 @@ const Header = () => {
         <SimucalcLogo />
         <span>Simucalc</span>
       </h1>
-      <AuthButton authenticated>M</AuthButton>
+      <AuthButton authenticated={authenticated} onClick={handleShowModal}>
+        M
+      </AuthButton>
     </HeaderStyled>
   );
 };

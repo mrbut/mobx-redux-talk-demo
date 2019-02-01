@@ -95,7 +95,8 @@ const GlobalStyles = createGlobalStyle`
     transition: background-color 0.7s ease-in;
   }
   
-  button:hover {
+  button:hover,
+  input[type="submit"] {
     cursor: pointer;
   }
 
