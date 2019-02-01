@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { ThemeContext } from '../context/ThemeContext';
+import { rem } from 'polished';
 
 const theme = {
   light: {
@@ -14,10 +15,10 @@ const theme = {
 
 const CalculatorOutputStyle = styled.div`
   text-align: right;
-  padding: 74px 45px 40px;
+  padding: ${rem(74)} ${rem(45)} ${rem(40)};
   h3 {
-    font-size: 56px;
-    padding-bottom: 10px;
+    font-size: ${rem(56)};
+    padding-bottom: ${rem(10)};
     color: ${props => theme[props.theme].color};
     font-variant-numeric: tabular-nums;
     span {
@@ -32,7 +33,7 @@ const CalculatorOutputStyle = styled.div`
 
 const HistoryStyle = styled.span`
   font-weight: 500;
-  font-size: 18px;
+  font-size: ${rem(18)};
   color: ${props => theme[props.theme].color};
   font-variant-numeric: tabular-nums;
 `;

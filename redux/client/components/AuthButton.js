@@ -22,16 +22,16 @@ const theme = {
 
 const AuthButtonStyle = styled.button`
   appearance: none;
-  width: 172px;
-  height: 52px;
-  padding: 4px;
+  width: ${rem(172)};
+  height: ${rem(52)};
+  padding: ${rem(4)};
   display: flex;
   align-items: center;
-  border-radius: 100px;
+  border-radius: ${rem(100)};
   border: none;
   text-transform: uppercase;
-  letter-spacingew: ${rem(1.2)};
-  font-size: 12px;
+  letter-spacing: ${rem(1.2)};
+  font-size: ${rem(12)};
 `;
 
 const AuthenticatedButtonStyle = styled(AuthButtonStyle)`
@@ -47,7 +47,7 @@ const AuthenticatedButtonStyle = styled(AuthButtonStyle)`
     width: 0;
     overflow: hidden;
     position: absolute;
-    padding-left: 31px;
+    padding-left: ${rem(31)};
     transition: opacity 0.1s ease-in;
   }
 
@@ -74,10 +74,10 @@ const AuthenticatedButtonStyle = styled(AuthButtonStyle)`
 
 const VerticalBar = styled.span`
   background-color: #c0c0c0;
-  width: 1px;
-  height: 29px;
+  width: ${rem(1)};
+  height: ${rem(29)};
   position: absolute;
-  right: 61px;
+  right: ${rem(61)};
   opacity: 0;
   transition: opacity 0.1s ease-in;
 `;

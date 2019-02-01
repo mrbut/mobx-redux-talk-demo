@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { rem } from 'polished';
 import PropTypes from 'prop-types';
 import CalculatorOutput from './CalculatorOutput';
 import CalculatorInput from './CalculatorInput';
@@ -16,7 +17,7 @@ const theme = {
 
 const CalculatorStyle = styled.section`
   background-color: ${props => theme[props.theme].bg};
-  height: 733px;
+  height: ${rem(733)};
 
   h2 {
     position: absolute;

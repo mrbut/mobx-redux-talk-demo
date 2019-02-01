@@ -37,8 +37,8 @@ const theme = {
 const CalculatorBtnStyle = styled.button`
   appearance: none;
   border: none;
-  width: 107px;
-  height: 107px;
+  width: ${rem(107)};
+  height: ${rem(107)};
   display: flex;
   justify-content: center;
   align-items: center;

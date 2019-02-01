@@ -22,10 +22,10 @@ const HeaderStyled = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  font-size: 20px;
+  padding: ${rem(20)};
+  font-size: ${rem(20)};
   text-transform: uppercase;
-  margin-bottom: 42px;
+  margin-bottom: ${rem(42)};
 
   h1 {
     font-family: 'Hk Grotesk', sans-serif;

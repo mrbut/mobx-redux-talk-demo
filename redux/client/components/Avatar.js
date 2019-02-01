@@ -7,8 +7,8 @@ const AvatarStyled = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: ${rem(44)};
+  height: ${rem(44)};
   border-radius: 100%;
   border: none;
   background-color: #ee6f50;

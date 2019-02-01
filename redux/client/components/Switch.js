@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { rem } from 'polished';
 import { ThemeContext } from '../context/ThemeContext';
 
 const theme = {
@@ -16,7 +17,7 @@ const theme = {
 const SwitchToggleStyled = styled.div`
   background-color: rgba(0, 0, 0, 0);
   border: none;
-  font-size: 14px;
+  font-size: ${rem(14)};
   font-weight: 500;
 
   label {

@@ -92,6 +92,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: "Hk Grotesk", sans-serif;
     font-size: 16px;
     font-weight: 300;
+    transition: background-color 0.7s ease-in;
   }
   
   button:hover {

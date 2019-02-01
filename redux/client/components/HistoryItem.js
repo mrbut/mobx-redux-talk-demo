@@ -21,9 +21,9 @@ const HistoryItemStyled = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid;
+  border-bottom: ${rem(2)} solid;
   font-family: 'Hk Grotesk', sans-serif;
-  font-size: 20px;
+  font-size: ${rem(20)};
   color: #e1e1e1;
   letter-spacing: ${rem(1.2)};
   padding-bottom: ${rem(30)};
@@ -38,7 +38,7 @@ const HistoryItemStyled = styled.li`
 `;
 
 const CalculationStyle = styled.span`
-  transform: translateY(2px);
+  transform: translateY(${rem(2)});
 `;
 
 const DeleteButtonStyle = styled.button`
