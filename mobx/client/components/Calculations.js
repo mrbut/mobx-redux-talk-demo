@@ -23,16 +23,18 @@ const CalculationsStyled = styled.main`
   }
 `;
 
-const Calculations = ({ calculations, handleDeleteHistory }) => (
+const Calculations = ({ history, handleDeleteHistory, output, outputHistory }) => (
   <CalculationsStyled>
-    <Calculator calculatorOutput={0} calculatorHistory={[]} />
-    <History calculations={calculations} handleDeleteHistory={handleDeleteHistory} />
+    <Calculator calculatorOutput={output} calculatorHistory={outputHistory} />
+    <History history={history} handleDeleteHistory={handleDeleteHistory} />
   </CalculationsStyled>
 );
 
 Calculations.propTypes = {
   calculations: Proptypes.array.isRequired,
-  handleDeleteHistory: Proptypes.func.isRequired
+  history: Proptypes.array.isRequired,
+  handleDeleteHistory: Proptypes.func.isRequired,
+  output: Proptypes.number.isRequired
 };
 
 export default Calculations;

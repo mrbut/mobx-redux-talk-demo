@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { ThemeContext } from '../context/ThemeContext';
 import { rem } from 'polished';
+import { ThemeContext } from '../context/ThemeContext';
 
 const theme = {
   light: {
@@ -16,12 +16,16 @@ const theme = {
 const CalculatorOutputStyle = styled.div`
   text-align: right;
   padding: ${rem(74)} ${rem(45)} ${rem(40)};
+  min-height: ${rem(198)};
   h3 {
-    font-size: ${rem(56)};
+    font-size: ${props => rem(props.fontSize)};
     padding-bottom: ${rem(10)};
     color: ${props => theme[props.theme].color};
     font-variant-numeric: tabular-nums;
-    span {
+    text-align: right;
+    overflow: hidden;
+    min-height: ${rem(67)};
+    span:first-child {
       position: absolute;
       left: -9999px;
       opacity: 0;
@@ -41,11 +45,19 @@ const HistoryStyle = styled.span`
 const CalculatorOutput = ({ output, history }) => {
   const { theme } = useContext(ThemeContext);
 
+  const [textSize, setTextSize] = useState(56);
+  const outputDOMNode = useRef(null);
+
+  useEffect(() => {
+    if (outputDOMNode.current.offsetWidth <= outputDOMNode.current.children[1].offsetWidth) {
+      setTextSize(textSize ? textSize - 10 : 8);
+    }
+  });
   return (
-    <CalculatorOutputStyle theme={theme}>
-      <h3>
+    <CalculatorOutputStyle fontSize={textSize} theme={theme}>
+      <h3 ref={outputDOMNode}>
         <span>Current Calculation</span>
-        {output}
+        <span>{output}</span>
       </h3>
       <HistoryStyle theme={theme}>{history.join(' ')}</HistoryStyle>
     </CalculatorOutputStyle>
@@ -53,7 +65,7 @@ const CalculatorOutput = ({ output, history }) => {
 };
 
 CalculatorOutput.propTypes = {
-  output: PropTypes.number.isRequired,
+  output: PropTypes.string.isRequired,
   history: PropTypes.array.isRequired
 };
 

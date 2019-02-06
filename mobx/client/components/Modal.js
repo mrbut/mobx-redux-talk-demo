@@ -86,7 +86,6 @@ const Modal = ({ handleShowModal, showModal }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [usernameInput, setUsernameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
-  console.log(showModal);
   return (
     <ModalStyle show={showModal}>
       <GlobalBodyStyle />

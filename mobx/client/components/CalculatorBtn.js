@@ -74,7 +74,15 @@ const CalculatorBtnStyle = styled.button`
 const CalculatorBtn = ({ children, onClick, format }) => {
   const { theme } = useContext(ThemeContext);
   return (
-    <CalculatorBtnStyle type="button" format={format} theme={theme} onClick={onClick}>
+    <CalculatorBtnStyle
+      type="button"
+      format={format}
+      theme={theme}
+      onClick={e => {
+        e.target.blur();
+        onClick();
+      }}
+    >
       {children}
     </CalculatorBtnStyle>
   );

@@ -2,9 +2,9 @@ import React from 'react';
 import Proptypes from 'prop-types';
 import HistoryItem from './HistoryItem';
 
-const History = ({ calculations, handleDeleteHistory }) => (
+const History = ({ history, handleDeleteHistory }) => (
   <ul>
-    {calculations.map(calculation => (
+    {history.map(calculation => (
       <HistoryItem
         calculation={calculation.value}
         hID={calculation.hID}
@@ -16,7 +16,7 @@ const History = ({ calculations, handleDeleteHistory }) => (
 );
 
 History.propTypes = {
-  calculations: Proptypes.array.isRequired,
+  history: Proptypes.array.isRequired,
   handleDeleteHistory: Proptypes.func.isRequired
 };
 

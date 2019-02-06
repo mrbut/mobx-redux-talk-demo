@@ -17,7 +17,7 @@ const theme = {
 
 const CalculatorStyle = styled.section`
   background-color: ${props => theme[props.theme].bg};
-  height: ${rem(733)};
+  height: max-content;
 
   h2 {
     position: absolute;
