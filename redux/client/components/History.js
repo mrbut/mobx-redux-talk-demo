@@ -6,7 +6,7 @@ const History = ({ calculations, handleDeleteHistory }) => (
   <ul>
     {calculations.map(calculation => (
       <HistoryItem
-        calculation={calculation.value}
+        calculation={calculation.result}
         hID={calculation.hID}
         onClick={handleDeleteHistory}
         key={calculation.hID}

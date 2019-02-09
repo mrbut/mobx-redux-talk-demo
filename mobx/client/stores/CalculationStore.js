@@ -26,25 +26,9 @@ updateCalculation(type, num) {
   }
 }
 
-add(num) {
-  this.output = this.output + num;
-}
 
-subtract(num) {
-  this.output = this.output - num;
-}
-
-multiply(num) {
-  this.output = this.output * num;
-}
-
-divide(num) {
-  this.output = this.output / num;
-}
-
-negateOutput() {
-  this.output *= -1;
-}
-});
+  const negateOutput = () => {
+    return output *= -1;
+  };
 
 export default CalculationStore;

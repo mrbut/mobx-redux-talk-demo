@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { rem } from 'polished';
 import Proptypes from 'prop-types';
 
-import Calculator from './Calculator';
-import History from './History';
+// Redux imports
+import Calculator from '../components/Calculator';
+import History from '../components/History';
 
 const CalculationsStyled = styled.main`
   height: 100%;

@@ -35,14 +35,7 @@ const CalculatorOutputStyle = styled.div`
   }
 `;
 
-const HistoryStyle = styled.span`
-  font-weight: 500;
-  font-size: ${rem(18)};
-  color: ${props => theme[props.theme].color};
-  font-variant-numeric: tabular-nums;
-`;
-
-const CalculatorOutput = ({ output, history }) => {
+const CalculatorOutput = ({ output }) => {
   const { theme } = useContext(ThemeContext);
 
   const [textSize, setTextSize] = useState(56);
@@ -59,14 +52,12 @@ const CalculatorOutput = ({ output, history }) => {
         <span>Current Calculation</span>
         <span>{output}</span>
       </h3>
-      <HistoryStyle theme={theme}>{history.join(' ')}</HistoryStyle>
     </CalculatorOutputStyle>
   );
 };
 
 CalculatorOutput.propTypes = {
-  output: PropTypes.string.isRequired,
-  history: PropTypes.array.isRequired
+  output: PropTypes.number.isRequired
 };
 
 export default CalculatorOutput;

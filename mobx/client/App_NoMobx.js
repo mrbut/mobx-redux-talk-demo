@@ -16,12 +16,10 @@ const handleDeleteHistory = historyID => {
   console.log(`${historyID} was deleted`);
 };
 
+// this.state = {theme: 'light', history: [{ hID: 1909, result: 20 }, { hID: 2109, result: 1000 }]};
 const App = () => {
-  const [theme, setTheme] = useState({ theme: 'light' });
-  const [history, setHistory] = useState([
-    { hID: 1909, value: [16, '+', 40, 'x', '2'] },
-    { hID: 2109, value: [16, '+', 40, 'x', '2'] }
-  ]);
+  const [theme, setTheme] = useState({ theme: 'light' }); // [state, handleToChangeState]
+  const [history, setHistory] = useState([{ hID: 1909, result: 20 }, { hID: 2109, result: 1000 }]);
   const [currentCalculation, setCurrentCalculation] = useState([]);
   const [authenticated, setAuthenticated] = useState(false);
   const [showModal, setShowModal] = useState(false);

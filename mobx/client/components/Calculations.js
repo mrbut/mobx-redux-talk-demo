@@ -23,15 +23,14 @@ const CalculationsStyled = styled.main`
   }
 `;
 
-const Calculations = ({ history, handleDeleteHistory, output, outputHistory }) => (
+const Calculations = ({ history, handleDeleteHistory, output }) => (
   <CalculationsStyled>
-    <Calculator calculatorOutput={output} calculatorHistory={outputHistory} />
+    <Calculator calculatorOutput={output} />
     <History history={history} handleDeleteHistory={handleDeleteHistory} />
   </CalculationsStyled>
 );
 
 Calculations.propTypes = {
-  calculations: Proptypes.array.isRequired,
   history: Proptypes.array.isRequired,
   handleDeleteHistory: Proptypes.func.isRequired,
   output: Proptypes.number.isRequired

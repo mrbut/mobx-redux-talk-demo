@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { rem } from 'polished';
 import PropTypes from 'prop-types';
 import CalculatorOutput from './CalculatorOutput';
 import CalculatorInput from './CalculatorInput';
 import { ThemeContext } from '../context/ThemeContext';
+
+import { connect } from 'react-redux';
+import { calcInputNum } from '../actions';
 
 const theme = {
   light: {
@@ -28,13 +30,21 @@ const CalculatorStyle = styled.section`
   }
 `;
 
-const Calculator = ({ calculatorOutput, calculatorHistory }) => {
+const mapStateToProps = state => ({
+  output: state.calculator.output
+});
+
+const mapDispatchToProps = dispatch => ({
+  inputNum: num => dispatch(calcInputNum(num))
+});
+
+const Calculator = ({ output, calculatorOutput, calculatorHistory, inputNum }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <CalculatorStyle theme={theme}>
       <h2>Calculator</h2>
-      <CalculatorOutput output={calculatorOutput} history={calculatorHistory} />
-      <CalculatorInput />
+      <CalculatorOutput output={output} history={calculatorHistory} />
+      <CalculatorInput valFn={inputNum} />
     </CalculatorStyle>
   );
 };
@@ -44,4 +54,7 @@ Calculator.propTypes = {
   calculatorHistory: PropTypes.array.isRequired
 };
 
-export default Calculator;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Calculator);

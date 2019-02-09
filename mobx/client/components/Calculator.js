@@ -28,22 +28,30 @@ const CalculatorStyle = styled.section`
   }
 `;
 
-const Calculator = ({ calculatorOutput, calculatorHistory }) => {
+const Calculator = ({ calculatorOutput }) => {
   const { theme } = useContext(ThemeContext);
-  const { inputNum, clearOutput } = useContext(CalculatorContext);
+  const { inputNum, clear, negate, percent, updateCalculation, evaluate } = useContext(
+    CalculatorContext
+  );
 
   return (
     <CalculatorStyle theme={theme}>
       <h2>Calculator</h2>
-      <CalculatorOutput output={calculatorOutput} history={calculatorHistory} />
-      <CalculatorInput valFn={inputNum} clearFn={clearOutput} />
+      <CalculatorOutput output={calculatorOutput} />
+      <CalculatorInput
+        updateCalculation={updateCalculation}
+        valFn={inputNum}
+        clearFn={clear}
+        negativeFn={negate}
+        percentFn={percent}
+        evalFn={evaluate}
+      />
     </CalculatorStyle>
   );
 };
 
 Calculator.propTypes = {
-  calculatorOutput: PropTypes.string.isRequired,
-  calculatorHistory: PropTypes.array.isRequired
+  calculatorOutput: PropTypes.number.isRequired
 };
 
 export default Calculator;

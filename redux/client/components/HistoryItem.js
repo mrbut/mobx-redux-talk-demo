@@ -63,7 +63,10 @@ const HistoryItem = ({ calculation, onClick }) => {
 
   return (
     <HistoryItemStyled>
-      <CalculationStyle>{calculation}</CalculationStyle>
+      <CalculationStyle>
+        Result:
+        {calculation}
+      </CalculationStyle>
       <DeleteButtonStyle theme={theme} onClick={onClick}>
         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 5 5">
           <path

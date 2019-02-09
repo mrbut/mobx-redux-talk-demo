@@ -1,5 +1,5 @@
 import React from 'react';
-import { observer, useComputed, useObservable } from 'mobx-react-lite';
+import { observer, useObservable } from 'mobx-react-lite';
 import DevTools from 'mobx-react-devtools';
 
 // App Contexts
@@ -7,7 +7,7 @@ import { ThemeContext } from './context/ThemeContext';
 import CalculatorContext from './context/CalculatorContext';
 
 // App Components
-import { inputTypes, matchOperator } from './utils/calculator';
+import { inputTypes } from './utils/calculator';
 import GlobalStyles from './styles/GlobalStyles';
 import GlobalNotification from './components/GlobalNotification';
 import Header from './components/Header';
@@ -21,83 +21,105 @@ const handleDeleteHistory = historyID => {
 };
 
 const App = observer(() => {
-  const state = useObservable({
+  const userSessionState = useObservable({
     theme: { theme: 'light' },
     setTheme() {
-      state.theme = state.theme.theme === 'light' ? { theme: 'dark' } : { theme: 'light' };
+      userSessionState.theme =
+        userSessionState.theme.theme === 'light' ? { theme: 'dark' } : { theme: 'light' };
     },
-    history: [
-      { hID: 1909, value: [16, '+', 40, 'x', '2'] },
-      { hID: 2109, value: [16, '+', 40, 'x', '2'] }
-    ],
-    setHistory() {},
-    currentCalculation: [],
-    setCurrentCalculation() {},
+    history: [],
     authenticated: false,
-    setAuthenticated() {},
     showModal: false,
     setShowModal() {
-      state.showModal = !state.showModal;
+      userSessionState.showModal = !userSessionState.showModal;
     }
   });
 
   const calculator = useObservable({
-    output: '0',
-    history: []
+    output: 0,
+    curInput: { operator: '', operand1: null, operand2: null },
+    previousOutput: null,
+    clear() {
+      calculator.output = 0;
+      calculator.curInput = { operator: '', operand: null };
+      calculator.previousOutput = null;
+    },
+    inputNum(num) {
+      if (calculator.previousOutput) {
+        calculator.output = num;
+      } else {
+        const result =
+          calculator.output === 0
+            ? num
+            : `${calculator.output !== 0 ? calculator.output : ''}${num}`;
+        calculator.output = Number(result);
+      }
+      if (!calculator.curInput.operand1) {
+        calculator.curInput.operand1 = calculator.output;
+      }
+    },
+    negate() {
+      calculator.output *= -1;
+    },
+    percent() {
+      calculator.output /= 100;
+    },
+    updateCalculation({ operator, operand }) {
+      const { curInput } = calculator;
+      if (operator) {
+        if (curInput.operator && curInput.operand1 && curInput.operand2) {
+          console.log('kfldsafjlskdfjl');
+          // console.log(inputTypes[operator].operator(1, 1));
+          calculator.output = inputTypes[operator].operator(curInput.operand1, curInput.operand2);
+          calculator.previousOutput = null;
+          curInput.operand1 = calculator.output;
+          curInput.operand2 = null;
+        }
+        curInput.operator = operator;
+        calculator.previousOutput = calculator.output;
+      } else if (operand && curInput.operator) {
+        console.log({ operator: curInput.operator, operand: curInput.operand });
+        if (curInput.operand1) {
+          curInput.operand2 = operand;
+        } else {
+          curInput.operand1 = operand;
+        }
+        calculator.previousOutput = null;
+      }
+      console.log({
+        operator: curInput.operator,
+        operand1: curInput.operand1,
+        operand2: curInput.operand2
+      });
+      console.log({
+        output: calculator.output,
+        operand1: curInput.operand1,
+        operand2: curInput.operand2
+      });
+    },
+    evaluate() {
+      const { curInput } = calculator;
+      if (curInput.operator && curInput.operand1 && curInput.operand2) {
+        calculator.output = inputTypes[curInput.operator].operator(
+          curInput.operand1,
+          curInput.operand2
+        );
+      }
+      userSessionState.history.push({ hID: 1909, result: calculator.output });
+    }
   });
 
-  const lastInput = useComputed(() => calculator.history[calculator.history.length - 1]);
-  const lastInputIsOperator = useComputed(() => typeof lastInput === 'string');
-
-  const inputNum = num => {
-    calculator.output =
-      calculator.output === '0'
-        ? `${num}`
-        : `${calculator.output !== '0' ? calculator.output : ''}${num}`;
-  };
-
-  const clearOutput = () => {
-    if (calculator.history.length <= 2) {
-      calculator.output = 0;
-    } else if (lastInputIsOperator && lastInput !== '%') {
-      // [5, '+', 5, '+']
-      calculator.history.pop();
-    } else if (lastInput === '%') {
-      calculator.output *= 100;
-      calculator.history.splice(-1);
-    } else {
-      // [5, '+', 5]
-      const { operator } = this.matchOperator(
-        calculator.history[calculator.history.length - 2],
-        true
-      );
-      calculator.output = operator(calculator.lastInput);
-      calculator.history.splice(-2);
-    }
-  };
-
-  const negateOutput = () => {
-    this.output *= -1;
-  };
-
-  const {
-    theme,
-    setTheme,
-    history,
-    setHistory,
-    currentCalculation,
-    setCurrentCalculation,
-    authenticated,
-    setAuthenticated,
-    showModal,
-    setShowModal
-  } = state;
-
+  const { theme, history, setTheme, authenticated, showModal, setShowModal } = userSessionState;
+  const { output, inputNum, clear, negate, percent, updateCalculation, evaluate } = calculator;
   return (
     <CalculatorContext.Provider
       value={{
+        clear,
+        evaluate,
         inputNum,
-        clearOutput
+        negate,
+        percent,
+        updateCalculation
       }}
     >
       <ThemeContext.Provider value={theme}>
@@ -107,8 +129,7 @@ const App = observer(() => {
           <GlobalNotification icon={mobXLogo}>MobX Example</GlobalNotification>
           <Header authenticated={authenticated} handleShowModal={() => setShowModal(!showModal)} />
           <Calculations
-            output={calculator.output}
-            outputHistory={calculator.history}
+            output={output}
             history={history}
             handleDeleteHistory={handleDeleteHistory}
           />
